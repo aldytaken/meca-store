@@ -30,7 +30,7 @@ const Home = async () =>
       </div>
       <div className="my-2">
         <h2 className="text-lg font-semibold">Session Data</h2>
-        <pre className="bg-gray-200/70 rounded-md px-1 py-1.5 w-min">{JSON.stringify(session, null, 2)}</pre>
+        <pre className="bg-gray-200/70 rounded-md px-1 py-1.5">{JSON.stringify(session, null, 2)}</pre>
       </div>
     </div>
   )
