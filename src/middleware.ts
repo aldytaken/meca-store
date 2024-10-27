@@ -1,38 +1,51 @@
-import { NextResponse } from 'next/server'
-import { authConfig } from '../auth.config'
-import NextAuth from 'next-auth'
-
-const { auth } = NextAuth(authConfig)
+import { getToken, GetTokenParams } from 'next-auth/jwt'
+import { NextRequest, NextResponse } from 'next/server'
 
 const PROTECTED_WITH_ROLE = ['/dashboard']
-const PROTECTED_WITH_LOGIN = ['/checkout', ...PROTECTED_WITH_ROLE]
+const PROTECTED_WITH_LOGIN = ['/checkout']
 
-export default auth((req) =>
+const PROTECTED_PATHS = [...PROTECTED_WITH_ROLE, ...PROTECTED_WITH_LOGIN]
+
+const redirectTo = (url: string, req: NextRequest, options?: { callback?: string }) =>
 {
-  const role = req.auth?.user.role
-  const hasLogin = !!req.auth
-  const { pathname } = req.nextUrl
+  const redirect = new URL(url, req.url)
+  
+  if (options?.callback)
+    redirect.searchParams.set('callbackUrl', req.url)
 
-  if (PROTECTED_WITH_LOGIN.includes(pathname))
+  return NextResponse.redirect(redirect)
+}
+
+export const middleware = async (req: NextRequest) =>
+{
+  const params: GetTokenParams =
+  {
+    req,
+    secureCookie: process.env.NODE_ENV === 'production',
+    secret: process.env.AUTH_SECRET,
+  } 
+
+  const session = await getToken(params)
+
+  const { pathname } = req.nextUrl
+  const hasLogin = !!session
+
+  if (PROTECTED_PATHS.includes(pathname))
   {
     if (!hasLogin)
-    {
-      const url = new URL('/api/auth/signin', req.url)
-      url.searchParams.set('callbackUrl', req.url)
-
-      return NextResponse.redirect(url)
-    }
+      return redirectTo('/api/auth/signin', req, { callback: req.url })
   }
 
   if (PROTECTED_WITH_ROLE.includes(pathname))
   {
-    if (!hasLogin || role !== 'admin')
-    {
-      const url = new URL('/403', req.url)
-
-      return NextResponse.redirect(url)
-    }
+    if (!hasLogin || session.role !== 'admin')
+      return redirectTo('/403', req)
   }
 
   return NextResponse.next()
-})
+}
+
+export const config =
+{
+  matcher: ['/dashboard', '/checkout'],
+}
