@@ -1,9 +1,9 @@
 import { NextAuthConfig, User } from 'next-auth'
 import Google from 'next-auth/providers/google'
 import { Provider } from 'next-auth/providers'
-import { UserLevel } from './types/user'
-import { ADMINS } from './config'
-import { prisma } from './prisma'
+import { UserLevel } from './src/types/user'
+import { ADMINS } from './src/config'
+import { prisma } from './src/prisma'
 
 const getUserRoleByEmail = (email = ''): UserLevel =>
   ADMINS.test(email) ? 'admin' : 'user'
@@ -58,6 +58,10 @@ const callbacks: NextAuthConfig['callbacks'] =
 
     return token
   },
+  async redirect({ url, baseUrl })
+  {
+    return url.startsWith(baseUrl) ? url : baseUrl
+  }
 }
 
 export const authConfig: NextAuthConfig =
