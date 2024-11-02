@@ -1,6 +1,7 @@
 import { signInWithGoogle, signOutSession } from '@/lib/auth/actions'
 import { Metadata } from 'next'
 import { auth } from '@/auth'
+import { Banner } from '@/modules/layout/templates/banner'
 
 export const metadata: Metadata =
 {
@@ -13,7 +14,10 @@ const Home = async () =>
   const hasSession = session?.user
 
   return (
-    <div className="p-5">
+    <>
+      <Banner text="Sólo para estudihambres de la UT Nay." className="font-semibold" />
+
+      <div className="p-5">
       <h1 className="text-4xl font-semibold">MecaStore</h1>
 
       <div className="my-2">
@@ -33,6 +37,7 @@ const Home = async () =>
         <pre className="bg-gray-200/70 rounded-md px-1 py-1.5">{JSON.stringify(session, null, 2)}</pre>
       </div>
     </div>
+    </>
   )
 }
 

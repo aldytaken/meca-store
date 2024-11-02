@@ -17,11 +17,15 @@ const config: Config =
       {
         light:
         {
-          background: '#ffffff',
+          background: '#fbfbfe',
+          accent: '#4f46e5',
+          text: '#050315',
+          primary: '#2f27ce',
+          secondary: '#e4e4e7',
         },
         dark:
         {
-
+          
         },
       },
     },
