@@ -15,3 +15,14 @@ export type DropdownItem =
   href?: string
   id: string
 }
+
+export type HeaderNavigationItem =
+{
+  label: string
+  href: string
+}
+
+export interface ClickHandler extends Generic
+{
+  onClick: () => void
+}
