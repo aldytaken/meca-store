@@ -1,5 +1,5 @@
 import { signInWithGoogle, signOutSession } from '@/lib/auth/actions'
-import { DropdownItem, Generic } from './global'
+import { DropdownItem, Generic, HeaderNavigationItem } from './global'
 
 export interface DropdownIconProps extends Generic
 {
@@ -26,4 +26,19 @@ export interface DropdownShortcutProps extends Generic
 export interface SessionBlockButtonProps extends Generic
 {
   action: typeof signInWithGoogle | typeof signOutSession
+}
+
+export interface HeaderSideMenuCloseButtonProps extends Generic
+{
+  onClose: () => void
+}
+
+export interface HeaderSideMenuLinksProps extends Generic
+{
+  navigation: HeaderNavigationItem[]
+}
+
+export interface HeaderNavigationLinksProps extends Generic
+{
+  navigation: HeaderNavigationItem[]
 }

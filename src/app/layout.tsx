@@ -1,3 +1,4 @@
+import Header from '@/modules/layout/templates/header'
 import { RootLayoutProps } from '@/types/layouts'
 import { Inter } from 'next/font/google'
 import { tw } from '@/lib/utils/tw'
@@ -11,6 +12,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) =>
   return (
     <html lang="es">
       <body className={tw(inter.className, 'bg-light-background dark:bg-dark-background antialiased')}>
+        <Header />
         <main role="main">
           {children}
         </main>
