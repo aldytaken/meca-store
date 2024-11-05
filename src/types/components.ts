@@ -1,15 +1,5 @@
-import { DropdownItem, Generic } from './generic'
-import { Session } from 'next-auth'
-
-export interface SessionBlockButtonProps extends Generic
-{
-  hasSession: boolean
-}
-
-export interface SessionBlockDataProps extends Generic
-{
-  session: Session
-}
+import { signInWithGoogle, signOutSession } from '@/lib/auth/actions'
+import { DropdownItem, Generic } from './global'
 
 export interface DropdownIconProps extends Generic
 {
@@ -31,4 +21,9 @@ export interface DropdownButtonContentProps
 export interface DropdownShortcutProps extends Generic
 {
   shortcut: string
+}
+
+export interface SessionBlockButtonProps extends Generic
+{
+  action: typeof signInWithGoogle | typeof signOutSession
 }

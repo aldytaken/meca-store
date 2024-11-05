@@ -4,6 +4,8 @@ export interface Generic
   children?: React.ReactNode
 }
 
+export type UserLevel = 'admin' | 'user'
+
 export type DropdownItem =
 {
   label: string

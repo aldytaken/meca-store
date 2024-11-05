@@ -1,5 +1,5 @@
 import NextAuth, { DefaultSession } from 'next-auth'
-import { UserLevel } from '@/types/user'
+import { UserLevel } from '@/types/global'
 import { JWT } from 'next-auth/jwt'
 
 declare module 'next-auth'

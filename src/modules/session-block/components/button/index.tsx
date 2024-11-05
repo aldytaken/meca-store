@@ -1,15 +1,13 @@
 'use client'
 
-import { signInWithGoogle, signOutSession } from '@/lib/auth/actions'
 import { SessionBlockButtonProps } from '@/types/components'
+import { signOutSession } from '@/lib/auth/actions'
 import { tw } from '@/lib/utils/tw'
 import React from 'react'
 
-const SessionBlockButton: React.FC<SessionBlockButtonProps> = ({ hasSession, className }) =>
+const SessionBlockButton: React.FC<SessionBlockButtonProps> = ({ action, className }) =>
 {
-  const action = hasSession
-    ? signOutSession
-    : signInWithGoogle
+  const isAuthenticated = action === signOutSession
 
   return (
     <form action={action}>
@@ -21,7 +19,7 @@ const SessionBlockButton: React.FC<SessionBlockButtonProps> = ({ hasSession, cla
           className
         )}
       >
-        {hasSession ? 'Sign Out' : 'Sign In'}
+        {isAuthenticated ? 'Sign Out' : 'Sign In'}
       </button>
     </form>
   )

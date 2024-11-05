@@ -1,4 +1,4 @@
-import { DropdownItem, Generic } from './generic'
+import { DropdownItem, Generic } from './global'
 
 export interface BannerProps extends Generic
 {

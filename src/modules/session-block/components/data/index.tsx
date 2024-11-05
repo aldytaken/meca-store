@@ -1,11 +1,14 @@
 'use client'
 
-import { SessionBlockDataProps } from '@/types/components'
+import { useSessionContext } from '@/lib/auth/provider'
+import { Generic } from '@/types/global'
 import { tw } from '@/lib/utils/tw'
 import React from 'react'
 
-const SessionBlockData: React.FC<SessionBlockDataProps> = ({ session, className }) =>
+const SessionBlockData: React.FC<Generic> = ({ className }) =>
 {
+  const { session } = useSessionContext()
+
   return (
     <pre
       className={tw(

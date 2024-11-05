@@ -1,7 +1,7 @@
 import { NextAuthConfig, User } from 'next-auth'
 import Google from 'next-auth/providers/google'
 import { Provider } from 'next-auth/providers'
-import { UserLevel } from './src/types/user'
+import { UserLevel } from './src/types/global'
 import { ADMINS } from './src/config'
 import { prisma } from './src/prisma'
 

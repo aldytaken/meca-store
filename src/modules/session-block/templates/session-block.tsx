@@ -1,8 +1,10 @@
 'use server'
 
+import { signInWithGoogle, signOutSession } from '@/lib/auth/actions'
+import { SessionProvider } from '@/lib/auth/provider'
 import SessionBlockButton from '../components/button'
 import SessionBlockData from '../components/data'
-import { Generic } from '@/types/generic'
+import { Generic } from '@/types/global'
 import { tw } from '@/lib/utils/tw'
 import { auth } from '@/auth'
 import React from 'react'
@@ -10,7 +12,7 @@ import React from 'react'
 const SessionBlock: React.FC<Generic> = async ({ className }) =>
 {
   const session = await auth()
-  const hasSession = !!session
+  const isAuthenticated = !!session
 
   return (
     <div
@@ -21,9 +23,19 @@ const SessionBlock: React.FC<Generic> = async ({ className }) =>
     >
       <div>
         <h2 className="text-2xl font-semibold">Session</h2>
-        <SessionBlockButton hasSession={hasSession} />
+        <SessionBlockButton
+          action={isAuthenticated
+            ? signOutSession
+            : signInWithGoogle
+          }
+        />
       </div>
-      {hasSession && <SessionBlockData session={session} />}
+
+      {isAuthenticated && (
+        <SessionProvider session={session}>
+          <SessionBlockData />
+        </SessionProvider>
+      )}
     </div>
   )
 }
