@@ -6,9 +6,9 @@ import { Session } from 'next-auth'
 
 interface SessionContextProps
 {
-  session: Session
+  session: Session | null
   isAuthenticated: boolean
-  user: Session['user']
+  user?: Session['user']
 }
 
 const SessionContext = createContext<SessionContextProps | null>(null)
@@ -26,7 +26,7 @@ export const useSessionContext = () =>
 export const SessionProvider: React.FC<SessionProviderProps> = ({ session, children }) =>
 {
   const isAuthenticated = !!session
-  const user = session.user
+  const user = session?.user || undefined
 
   return (
     <SessionContext.Provider value={{ session, isAuthenticated, user }}>
