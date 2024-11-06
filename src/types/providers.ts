@@ -1,4 +1,4 @@
-import { Generic, HeaderNavigationItem } from './global'
+import { DropdownItem, Generic, HeaderNavigationItem } from './global'
 import { Session } from 'next-auth'
 
 export interface SessionProviderProps extends Generic
@@ -8,12 +8,14 @@ export interface SessionProviderProps extends Generic
 
 export interface HeaderProviderProps extends Generic
 {
-  navigation: HeaderNavigationItem[]
+  headerNavigation: HeaderNavigationItem[]
+  accountNavigation: DropdownItem[]
 }
 
 export interface HeaderContextProps
 {
-  navigation: HeaderNavigationItem[]
+  headerNavigation: HeaderNavigationItem[]
   openSideMenu: boolean
   setOpenSideMenu: React.Dispatch<React.SetStateAction<boolean>>
+  accountNavigation: DropdownItem[]
 }

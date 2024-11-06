@@ -2,15 +2,15 @@
 
 import { useHeaderContext } from '../../providers/HeaderProvider'
 import HeaderNavigationLinks from '../header-navigation-links'
-import { UserCircleIcon } from '@heroicons/react/24/outline'
 import HeaderMenuButton from '../header-menu-button'
 import HeaderLogo from '../header-logo'
 import { tw } from '@/lib/utils/tw'
 import React from 'react'
+import Account from '@/modules/account/templates/account'
 
 const HeaderNavigation = () =>
 {
-  const { navigation, setOpenSideMenu } = useHeaderContext()
+  const { headerNavigation, accountNavigation, setOpenSideMenu } = useHeaderContext()
 
   const handleOpenSideMenu = () =>
     setOpenSideMenu(true)
@@ -31,27 +31,13 @@ const HeaderNavigation = () =>
           <div className="flex items-center">
             <HeaderMenuButton onClick={handleOpenSideMenu} />
             <HeaderLogo />
-            <HeaderNavigationLinks navigation={navigation} />
+            <HeaderNavigationLinks navigation={headerNavigation} />
           </div>
 
           {/* Right Section: User */}
           <div className="flex items-center ml-auto space-x-4">
             {/* User */}
-            <div className="flex lg:ml-6">
-              <a
-                href="#"
-                className={tw(
-                  "p-2",
-                  "text-light-secondary hover:text-light-text/70 dark:text-dark-secondary dark:hover:text-dark-text/70"
-                )}
-                aria-label="Usuario"
-              >
-                <UserCircleIcon
-                  className="size-6"
-                  aria-hidden="true"
-                />
-              </a>
-            </div>
+            <Account navigation={accountNavigation} />
           </div>
         </div>
       </div>

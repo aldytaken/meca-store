@@ -15,12 +15,12 @@ export const useHeaderContext = () =>
   return context
 }
 
-export const HeaderProvider: React.FC<HeaderProviderProps> = ({ children, navigation }) =>
+export const HeaderProvider: React.FC<HeaderProviderProps> = ({ children, accountNavigation, headerNavigation }) =>
 {
   const [openSideMenu, setOpenSideMenu] = useState(false)
 
   return (
-    <HeaderContext.Provider value={{ navigation, openSideMenu, setOpenSideMenu }}>
+    <HeaderContext.Provider value={{ accountNavigation, headerNavigation, openSideMenu, setOpenSideMenu }}>
       {children}
     </HeaderContext.Provider>
   )

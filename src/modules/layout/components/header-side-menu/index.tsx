@@ -7,7 +7,7 @@ import HeaderSideMenuLinks from '../header-side-menu-links'
 
 const HeaderSideMenu = () =>
 {
-  const { navigation, openSideMenu, setOpenSideMenu } = useHeaderContext()
+  const { headerNavigation, openSideMenu, setOpenSideMenu } = useHeaderContext()
 
   const handleCloseSideMenu = () =>
     setOpenSideMenu(false)
@@ -28,7 +28,7 @@ const HeaderSideMenu = () =>
           transition
         >
           <HeaderSideMenuCloseButton onClose={handleCloseSideMenu} />
-          <HeaderSideMenuLinks navigation={navigation} />
+          <HeaderSideMenuLinks navigation={headerNavigation} />
         </DialogPanel>
       </div>
     </Dialog>

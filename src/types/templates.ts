@@ -11,3 +11,8 @@ export interface DropdownProps extends Generic
   label?: string
   onSelect?: (id: string) => void
 }
+
+export interface AccountProps extends Generic
+{
+  navigation: DropdownItem[]
+}
