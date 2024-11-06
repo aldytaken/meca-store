@@ -42,3 +42,9 @@ export interface HeaderNavigationLinksProps extends Generic
 {
   navigation: HeaderNavigationItem[]
 }
+
+export interface AccountProfilePictureProps extends Generic
+{
+  username?: string | null
+  src: string
+}
