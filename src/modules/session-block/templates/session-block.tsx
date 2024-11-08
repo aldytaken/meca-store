@@ -17,7 +17,7 @@ const SessionBlock: React.FC<Generic> = async ({ className }) =>
   return (
     <div
       className={tw(
-        "p-6 space-y-6",
+        "space-y-6",
         className
       )}
     >
