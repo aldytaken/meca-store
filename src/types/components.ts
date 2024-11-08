@@ -26,6 +26,7 @@ export interface DropdownShortcutProps extends Generic
 export interface SessionBlockButtonProps extends Generic
 {
   action: typeof signInWithGoogle | typeof signOutSession
+  isAuthenticated?: boolean
 }
 
 export interface HeaderSideMenuCloseButtonProps extends Generic

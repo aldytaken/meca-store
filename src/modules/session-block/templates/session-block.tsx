@@ -28,6 +28,7 @@ const SessionBlock: React.FC<Generic> = async ({ className }) =>
             ? signOutSession
             : signInWithGoogle
           }
+          isAuthenticated={isAuthenticated}
         />
       </div>
 

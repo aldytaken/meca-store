@@ -5,10 +5,8 @@ import { signOutSession } from '@/lib/auth/actions'
 import { tw } from '@/lib/utils/tw'
 import React from 'react'
 
-const SessionBlockButton: React.FC<SessionBlockButtonProps> = ({ action, className }) =>
+const SessionBlockButton: React.FC<SessionBlockButtonProps> = ({ action, className, isAuthenticated }) =>
 {
-  const isAuthenticated = action === signOutSession
-
   return (
     <form action={action}>
       <button
