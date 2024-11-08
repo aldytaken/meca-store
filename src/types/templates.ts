@@ -16,3 +16,11 @@ export interface AccountProps extends Generic
 {
   navigation: DropdownItem[]
 }
+
+export interface ButtonProps extends Generic
+{
+  style?: 'primary' | 'secondary' | 'danger' | 'success'
+  action?: () => void
+  label?: string
+  href?: string
+}
