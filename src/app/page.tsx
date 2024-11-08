@@ -1,4 +1,5 @@
 import { Banner } from '@/modules/layout/templates/banner'
+import Header from '@/modules/layout/templates/header'
 import Playground from '@/modules/playground'
 import { Metadata } from 'next'
 
@@ -11,6 +12,7 @@ const Home = async () =>
 {
   return (
     <>
+      <Header />
       <Banner text="Sólo para estudihambres de la UT Nay." className="font-semibold" />
       <Playground />
     </>
